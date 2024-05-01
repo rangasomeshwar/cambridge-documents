@@ -1,0 +1,67 @@
+while read host
+do
+JMS_URL="http://$host:9080/DmMethods/servlet/DoMethod"
+IJMS_URL="http://$host:9180/DmMethods/servlet/DoMethod"
+ACS_URL="http://$host:9080/ACS/servlet/ACS"
+IACS_URL="http://$host:9180/ACS/servlet/ACS"
+if curl -m 1 $JMS_URL > /dev/null 2>&1
+then
+  echo "Documentum JMS on $host is working fine." >> $COMMONPATH/logs
+else
+  echo "Documentum JMS on $host is down." >> $COMMONPATH/logs
+fi
+if curl -m 1 $IJMS_URL > /dev/null 2>&1
+then
+  echo "Documentum IJMS on $host is working fine." >> $COMMONPATH/logs
+else
+  echo "Documentum IJMS on $host is down." >> $COMMONPATH/logs
+fi
+if curl -m 1 $ACS_URL > /dev/null 2>&1
+then
+  echo "Documentum ACS on $host is working fine." >> $COMMONPATH/logs
+else
+  echo "Documentum ACS on $host is down." >> $COMMONPATH/logs
+fi
+if curl -m 1 $IACS_URL > /dev/null 2>&1
+then
+  echo "Documentum IACS on $host is working fine." >> $COMMONPATH/logs
+else
+  echo "Documentum IACS on $host is down." >> $COMMONPATH/logs
+fi
+done < $COMMONPATH/hostlist_dc10
+
+while read host
+do
+JMS_URL="http://$host:9080/DmMethods/servlet/DoMethod"
+ACS_URL="http://$host:9080/ACS/servlet/ACS"
+if curl -m 1 $JMS_URL > /dev/null 2>&1
+then
+  echo "Documentum JMS on $host is working fine." >> $COMMONPATH/logs
+else
+  echo "Documentum JMS on $host is down." >> $COMMONPATH/logs
+fi
+if curl -m 1 $ACS_URL > /dev/null 2>&1
+then
+  echo "Documentum ACS on $host is working fine." >> $COMMONPATH/logs
+else
+  echo "Documentum ACS on $host is down." >> $COMMONPATH/logs
+fi
+done < $COMMONPATH/hostlist_omr
+
+while read host
+do
+JMS_URL="http://$host:9080/DmMethods/servlet/DoMethod"
+ACS_URL="http://$host:9080/ACS/servlet/ACS"
+if curl -m 1 $JMS_URL > /dev/null 2>&1
+then
+  echo "Documentum JMS on $host is working fine." >> $COMMONPATH/logs
+else
+  echo "Documentum JMS on $host is down." >> $COMMONPATH/logs
+fi
+if curl -m 1 $ACS_URL > /dev/null 2>&1
+then
+  echo "Documentum ACS on $host is working fine." >> $COMMONPATH/logs
+else
+  echo "Documentum ACS on $host is down." >> $COMMONPATH/logs
+fi
+done < $COMMONPATH/hostlist_icr
